@@ -1,0 +1,5 @@
+---
+# defaults file for web_server
+http_port: 8087
+server_name: "www.test.com"
+document_root: /var/www/test3

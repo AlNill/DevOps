@@ -1,0 +1,24 @@
+---
+# tasks file for web_server
+- name: Copy template file to sites-enabled directory of Nginx
+  template:
+    src: templates/site_template
+    dest: /etc/nginx/sites-enabled/{{ server_name }}
+    owner: user
+    group: user
+    mode: 0777
+  notify:
+  - Restart nginx
+
+- name: Copy web-server static files to document_root
+  copy:
+    src: files/site/
+    dest: "{{ document_root }}/"
+    owner: user
+    group: user
+    mode: 0777
+
+- name: Ensure nginx is running
+  service:
+    name: nginx
+    state: started

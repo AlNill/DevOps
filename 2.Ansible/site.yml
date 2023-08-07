@@ -1,0 +1,5 @@
+- name: Set nginx settings and copy web_server static files
+  hosts: webservers
+  become: true
+  roles:
+    - role: web_server
